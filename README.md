@@ -1,6 +1,7 @@
 # urFetch
 ### the system info tool with **NO** configuration file and **NO** built in features
 > *"why write a new config file when you can just change the source code?"*
+
 -literally no one ever
 ##### featuring our brandnew innovative copy paste installation!
     1. copy the code from urfetch
