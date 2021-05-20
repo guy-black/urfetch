@@ -10,6 +10,6 @@
     2. open your favorite text editor
     3. paste
     4. fill in your distro, ascii art, and flavor text
-    5. save to /bin/
+    5. save to /bin/ or ~/.bin or idk whatever you got in your $PATH, idc
     
 this is heavily based on [ufetch](https://gitlab.com/jschx/ufetch)
