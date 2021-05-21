@@ -4,7 +4,10 @@
 
 -literally no one ever
 
-![2021-05-20-171007_421x174_scrot](https://user-images.githubusercontent.com/67166723/119055343-7c7d1980-b98e-11eb-947c-be6603440749.png)
+![2021-05-20-192858_433x265_scrot](https://user-images.githubusercontent.com/67166723/119064748-a855ca80-b9a1-11eb-8826-9ebbb413e90a.png)
+
+
+
 ##### featuring our brandnew innovative copy paste installation!
     1. copy the code from urfetch
     2. open your favorite text editor
