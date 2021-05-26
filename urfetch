@@ -38,6 +38,14 @@ c0="${reset}${cyan}"                # ascii art
 ft1="${reset}${bold}${magenta}"     # flavortext style 1
 ft2="${reset}${cyan}"               # flavortext style 2
 
+# flavor text
+## list of options
+flavor=("${ft1}urFetch is: ${ft2}Good Fetch!${reset}"
+	    "${ft1}urFetch is: ${ft2}Great Fetch!${reset}"
+	    "${ft1}urFetch is: ${ft2}Best Fetch!${reset}")
+##copy and paste the following line where ever youd like a random flavortext
+##${flavor[$(($RANDOM % ${#flavor[@]}))]}
+
 ## OUTPUT
 ### reaarange, change ascii art, change or add flavor text, or add or remove colorbars here
 ### this ascii art came from open https://manytools.org/hacker-tools/ascii-banner/
@@ -50,7 +58,7 @@ ${c0}   /│\└─┘┴└─/│\  ${lc}UPTIME: ${ic}${uptime}${reset}
 ${c0} ┌─┐┌─┐┌┬┐┌─┐┬ ┬ ${lc}SHELL: ${ic}${shell}${reset}
 ${c0} ├┤ ├┤  │ │  ├─┤   
 ${c0} └  └─┘ ┴ └─┘┴ ┴ ${ic}${color}${reset} 
-${c0}    (changeme)   ${lc}urFetch is: ${ic}Best Fetch!${reset} 
+${c0}    (changeme)   ${flavor[$(($RANDOM % ${#flavor[@]}))]}
 ${c0}                 ${ic}${color}${reset}
 
 EOF
