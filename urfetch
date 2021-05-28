@@ -1,18 +1,8 @@
 #!/bin/sh
-#
 # urfetch - a wee lil fetch that does what u want and nothing else
 # based off of ufetch
-
-## INFO
-# user is already defined
-host="$(cat /etc/hostname)"
-os='windowslmao' #you should know this by now
-kernel="$(uname -sr)"
-uptime="$(uptime -p | sed 's/up //')"
-shell="$(basename "${SHELL}")"
-# string to show your colors
+## string to show your colors
 colstr='░▓█▓'
-
 ## DEFINE COLORS
 # probably don't change these
 if [ -x "$(command -v tput)" ]; then
@@ -29,36 +19,31 @@ if [ -x "$(command -v tput)" ]; then
 fi
 # you change the order or your colors here
 color="${black}${colstr}${red}${colstr}${green}${colstr}${yellow}${colstr}${blue}${colstr}${magenta}${colstr}${cyan}${colstr}${white}${colstr}"
-
 # style rules for output - change until your happy
-lc="${reset}${bold}${magenta}"      # labels
 nc="${reset}${bold}${blue}"         # user and hostname
-ic="${reset}${cyan}"                # info
+lc="${reset}${magenta}"                # info
 c0="${reset}${cyan}"                # ascii art
-ft1="${reset}${bold}${magenta}"     # flavortext style 1
-ft2="${reset}${cyan}"               # flavortext style 2
-
+ft="${reset}${bold}${magenta}"     # flavortext style
 # flavor text
 ## list of options
-flavor=("${ft1}urFetch is: ${ft2}Good Fetch!${reset}"
-	    "${ft1}urFetch is: ${ft2}Great Fetch!${reset}"
-	    "${ft1}urFetch is: ${ft2}Best Fetch!${reset}")
+flavor=("${ft}urFetch is good Fetch!${reset}"
+	    "${ft}urFetch is great Fetch!${reset}"
+	    "${ft}urFetch is best Fetch!${reset}")
 ##copy and paste the following line where ever youd like a random flavortext
 ##${flavor[$(($RANDOM % ${#flavor[@]}))]}
-
 ## OUTPUT
 ### reaarange, change ascii art, change or add flavor text, or add or remove colorbars here
+### replace windwosLmaos with your distro, you should know it by now
+### if you know your shell, an hostname and know they won't change you can hard code them to make this a bit quicker
 ### this ascii art came from open https://manytools.org/hacker-tools/ascii-banner/
 cat <<EOF
-
-${c0}                 ${nc}${USER}${ic}@${nc}${host}${reset}
-${c0}   \│/┬ ┬┬─┐\│/  ${lc}OS: ${ic}${os}${reset}
-${c0}   ─ ─│ │├┬┘─ ─  ${lc}KERNEL: ${ic}${kernel}${reset}
-${c0}   /│\└─┘┴└─/│\  ${lc}UPTIME: ${ic}${uptime}${reset}
-${c0} ┌─┐┌─┐┌┬┐┌─┐┬ ┬ ${lc}SHELL: ${ic}${shell}${reset}
+${c0}                 ${nc}$(echo $USER)${ic}@${nc}$(cat /etc/hostname)${reset}
+${c0}   \│/┬ ┬┬─┐\│/  ${lc}windwosLmaos${reset} 
+${c0}   ─ ─│ │├┬┘─ ─  ${lc}$(uname -sr)${reset} 
+${c0}   /│\└─┘┴└─/│\  ${lc}$(uptime -p)${reset}
+${c0} ┌─┐┌─┐┌┬┐┌─┐┬ ┬ ${lc}$(basename "$SHELL")${reset}
 ${c0} ├┤ ├┤  │ │  ├─┤   
-${c0} └  └─┘ ┴ └─┘┴ ┴ ${ic}${color}${reset} 
+${c0} └  └─┘ ┴ └─┘┴ ┴ ${color}${reset} 
 ${c0}    (changeme)   ${flavor[$(($RANDOM % ${#flavor[@]}))]}
-${c0}                 ${ic}${color}${reset}
-
+${c0}                 ${color}${reset}
 EOF
