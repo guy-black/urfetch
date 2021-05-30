@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # urfetch - a wee lil fetch that does what u want and nothing else
 # based off of ufetch
 ## string to show your colors
@@ -37,13 +37,13 @@ flavor=("${ft}urFetch is good Fetch!${reset}"
 ### if you know your shell, an hostname and know they won't change you can hard code them to make this a bit quicker
 ### this ascii art came from open https://manytools.org/hacker-tools/ascii-banner/
 cat <<EOF
-${c0}                 ${nc}$(echo $USER)${ic}@${nc}$(cat /etc/hostname)${reset}
+${c0}                 ${nc}${USER}${lc}@${nc}$(cat /etc/hostname)${reset}
 ${c0}   \│/┬ ┬┬─┐\│/  ${lc}windwosLmaos${reset} 
 ${c0}   ─ ─│ │├┬┘─ ─  ${lc}$(uname -sr)${reset} 
 ${c0}   /│\└─┘┴└─/│\  ${lc}$(uptime -p)${reset}
 ${c0} ┌─┐┌─┐┌┬┐┌─┐┬ ┬ ${lc}$(basename "$SHELL")${reset}
 ${c0} ├┤ ├┤  │ │  ├─┤   
 ${c0} └  └─┘ ┴ └─┘┴ ┴ ${color}${reset} 
-${c0}    (changeme)   ${flavor[$(($RANDOM % ${#flavor[@]}))]}
+${c0}    (changeme)   ${flavor[$((RANDOM % ${#flavor[@]}))]}
 ${c0}                 ${color}${reset}
 EOF
