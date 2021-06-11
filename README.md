@@ -4,7 +4,6 @@
 
 -literally no one ever
 
-![2021-05-20-192858_433x265_scrot](https://user-images.githubusercontent.com/67166723/119064748-a855ca80-b9a1-11eb-8826-9ebbb413e90a.png)
 
 
 

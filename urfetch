@@ -1,49 +1,40 @@
 #!/bin/bash
 # urfetch - a wee lil fetch that does what u want and nothing else
 # based off of ufetch
-## string to show your colors
-colstr='░▓█▓'
-## DEFINE COLORS
-# probably don't change these
-if [ -x "$(command -v tput)" ]; then
-	bold="$(tput bold)"
-	black="$(tput setaf 0)"
-	red="$(tput setaf 1)"
-	green="$(tput setaf 2)"
-	yellow="$(tput setaf 3)"
-	blue="$(tput setaf 4)"
-	magenta="$(tput setaf 5)"
-	cyan="$(tput setaf 6)"
-	white="$(tput setaf 7)"
-	reset="$(tput sgr0)"
-fi
-# you change the order or your colors here
-color="${black}${colstr}${red}${colstr}${green}${colstr}${yellow}${colstr}${blue}${colstr}${magenta}${colstr}${cyan}${colstr}${white}${colstr}"
-# style rules for output - change until your happy
-nc="${reset}${bold}${blue}"         # user and hostname
-lc="${reset}${magenta}"                # info
-c0="${reset}${cyan}"                # ascii art
-ft="${reset}${bold}${magenta}"     # flavortext style
+## color and style
+# takes number 0-15, 0 is black, 7 is white, the rest depends on your terminal's colorscheme
+function setColor () { tput setaf "$1";}
+#back to default color
+function clearColor () { tput sgr0;}
+function setBold () { tput bold;}
+#takes a string and prints it in every color
+function printColor () { for i in {0..15}; do (tput setaf $i); printf '%s' "$1"; done;}
+colorBar=$( printColor "█▓" )
+colorWave=$( printColor "~*~")
+# styles
+function lc () { clearColor; setBold; setColor 4;}     # rest of text
+function nc () { clearColor; setBold; setColor 5;}    # user and hostname
+function c0 () { clearColor; setBold; setColor 6;}      # ascii art
 # flavor text
 ## list of options
-flavor=("${ft}urFetch is good Fetch!${reset}"
-	    "${ft}urFetch is great Fetch!${reset}"
-	    "${ft}urFetch is best Fetch!${reset}")
+flavor=($(lc)"urFetch is good Fetch!"
+	$(lc)"urFetch is great Fetch!"
+	$(lc)"urFetch is best Fetch!")
 ##copy and paste the following line where ever youd like a random flavortext
 ##${flavor[$(($RANDOM % ${#flavor[@]}))]}
 ## OUTPUT
-### reaarange, change ascii art, change or add flavor text, or add or remove colorbars here
+### reaarange, change ascii art, place flavor text, or add or remove colorbars here
 ### replace windwosLmaos with your distro, you should know it by now
 ### if you know your shell, an hostname and know they won't change you can hard code them to make this a bit quicker
 ### this ascii art came from open https://manytools.org/hacker-tools/ascii-banner/
 cat <<EOF
-${c0}                 ${nc}${USER}${lc}@${nc}$(cat /etc/hostname)${reset}
-${c0}   \│/┬ ┬┬─┐\│/  ${lc}windwosLmaos${reset} 
-${c0}   ─ ─│ │├┬┘─ ─  ${lc}$(uname -sr)${reset} 
-${c0}   /│\└─┘┴└─/│\  ${lc}$(uptime -p)${reset}
-${c0} ┌─┐┌─┐┌┬┐┌─┐┬ ┬ ${lc}$(basename "$SHELL")${reset}
-${c0} ├┤ ├┤  │ │  ├─┤   
-${c0} └  └─┘ ┴ └─┘┴ ┴ ${color}${reset} 
-${c0}    (changeme)   ${flavor[$((RANDOM % ${#flavor[@]}))]}
-${c0}                 ${color}${reset}
+$(c0)                 $(nc)${USER}$(lc)@$(nc)$(cat /etc/hostname)
+$(c0)   \│/┬ ┬┬─┐\│/  $(lc)windwosLmaos 
+$(c0)   ─ ─│ │├┬┘─ ─  $(lc)$(uname -sr) 
+$(c0)   /│\└─┘┴└─/│\  $(lc)$(uptime -p)
+$(c0) ┌─┐┌─┐┌┬┐┌─┐┬ ┬ $(lc)$(basename "$SHELL")
+$(c0) ├┤ ├┤  │ │  ├─┤   
+$(c0) └  └─┘ ┴ └─┘┴ ┴ $colorBar
+$(c0)    (changeme)   ${flavor[$((RANDOM % ${#flavor[@]}))]}
+$(c0)                 $colorWave
 EOF
